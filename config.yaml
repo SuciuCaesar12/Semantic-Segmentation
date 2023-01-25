@@ -1,0 +1,30 @@
+model: unet
+dataset: pascal
+
+# UNET --------------------------------------- #
+unet_info:
+  INPUT_SHAPE: (256,256,3)
+  C: 22 # nb of classes
+  n_blocks: 2 # nb of blocks for one path (both contracting and expanding paths are symmetric)
+  summary: True
+  plot_model: True
+
+  activation: 'relu'
+  kernel_initializer: 'he_normal'
+  regularizer_factor: 0.0
+  batch_normalization: True
+
+# train info ------------------------- #
+train_info:
+  optimizer: adam
+  learning_rate: 0.001
+  loss_fn: categorical_crossentropy
+  input_shape: (256,256,3)
+  C: 22 # nb of classes
+  batch_size: 1
+  epochs: 70
+
+  callbacks:
+    tensorboard: True
+    reduce_on_plateau: True
+# ------------------------------------ #
